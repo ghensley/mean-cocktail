@@ -18,9 +18,10 @@
 			<div class="row">
 				<div class="col-md-3">
 					<h2> What ingredients do you have </h2>
+					<label>Search: <input ng-model="searchText"></label>
 					<ul>
-						<li ng-repeat="ingredient in ingredients">
-							{{ ingredient.name }}
+						<li ng-cloak ng-repeat="ingredient in ingredients | filter:searchText | limitTo:5">
+							{{ ingredient.name}}
 						</li>
 					</ul>
 				</div>
