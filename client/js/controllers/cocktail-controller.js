@@ -22,5 +22,29 @@ app.controller("cocktailController", ["$scope", "$http", function($scope, $http)
 	    	console.log(response);
 	  	});
 	}
-	$scope.getIngredients();
+}]);
+
+app.controller("recipeController", ["$scope", "$http", function($scope, $http){
+	$scope.name = "";
+	$scope.prep = "";
+	$scope.description = "";
+	$scope.ingredients = []
+	$scope.createCocktail = function(){
+		var parameter = JSON.stringify({
+  				name: $scope.name,
+  				prep: $scope.prep,
+  				description: $scope.description,
+  				ingredients: $scope.ingredients
+  		});
+
+		$http.post('/api/create_cocktail', parameter).
+    	success(function(data, status, headers, config) {
+        	console.log(data);
+      	}).
+      	error(function(data, status, headers, config) {
+	    	console.log(response);
+      	});
+
+
+	}
 }]);

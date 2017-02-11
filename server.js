@@ -41,8 +41,8 @@ app.get("/api/make_ingredient/:name", function(req, res){
 	}); 
 });
 
-app.post("/create_cocktail",function(req,res){
-	data = request.body
+app.post("/api/create_cocktail",function(req,res){
+	data = req.body
 
 	var new_cocktail = new Cocktail({
 		name: data.name,
@@ -56,11 +56,22 @@ app.post("/create_cocktail",function(req,res){
 	});
 });
 
+app.get("/api/cocktails", function(req,res){
+	Cocktail.find(function (err, cocktails) {
+  		if (err) return console.error(err);
+  		res.send(cocktails);
+	});
+})
+
 app.get("/api/ingredients",function(req, res){
 	Ingredient.find(function (err, ingredients) {
   		if (err) return console.error(err);
   		res.send(ingredients);
 	});
+});
+
+app.get("/cocktail",function(req,res){
+	res.sendFile(__dirname + "/client/views/cocktail.html");
 });
 
 app.get("/api/update_availability/:id/:status",function(req,res){
