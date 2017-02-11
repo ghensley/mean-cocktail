@@ -1,8 +1,10 @@
 var express = require("express"),
 	app = express(),
-	mongoose = require('mongoose');
+	mongoose = require('mongoose'),
+	bodyParser = require('body-parser');
 
 mongoose.connect('mongodb://localhost/cocktail');
+app.use(bodyParser.json())
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -14,7 +16,16 @@ var ingredientSchema = mongoose.Schema({
 	name: String,
 	have: Boolean
 });
+
+var cocktailSchema = mongoose.Schema({
+	name: String,
+	ingredients: [{name: String, amount: String}],
+	description: String,
+	prep: String
+})
+
 var Ingredient = mongoose.model('Ingredient', ingredientSchema);
+var Cocktail = mongoose.model('Cocktail',cocktailSchema);
 
 app.get("/", function(req, res){
 	res.sendFile(__dirname + "/client/views/index.html");
@@ -28,6 +39,21 @@ app.get("/api/make_ingredient/:name", function(req, res){
   		if (err) return console.error(err);
   		res.send("Added " + new_ingredient.name);
 	}); 
+});
+
+app.post("/create_cocktail",function(req,res){
+	data = request.body
+
+	var new_cocktail = new Cocktail({
+		name: data.name,
+		description: data.description,
+		prep: data.prep,
+		ingredients: data.ingredients
+	});
+	new_cocktail.save(function (err, new_cocktail){
+		if (err) return console.error(err);
+		res.send("Added " + new_cocktail.name)
+	});
 });
 
 app.get("/api/ingredients",function(req, res){
