@@ -4,6 +4,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
 		<script src="/js/controllers/cocktail-controller.js"></script>
+
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -12,18 +13,35 @@
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<link rel="stylesheet" href="/css/cocktail.css">
 	</head>
 	<body>
 		<div class="container" ng-controller="cocktailController">
 			<div class="row">
-				<div class="col-md-3">
-					<h2> What ingredients do you have </h2>
-					<label>Search: <input ng-model="searchText"></label>
-					<ul>
-						<li ng-cloak ng-repeat="ingredient in ingredients | filter:searchText | limitTo:5">
-							{{ ingredient.name}}
+				<div class="col-md-12">
+					<h1> Cocktail Inventory </h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3" ng-cloak>
+
+					<h3>Ingredients you have:</h3>
+
+					<ul class="list-group">
+						<li class="list-group-item" ng-repeat="ingredient in ingredients|filter:{have:true}|orderBy:'name'">
+							<input type="checkbox" ng-change="update(ingredient)" ng-model="ingredient.have"> {{ingredient.name}}
 						</li>
 					</ul>
+
+					<label>Search: <input ng-model="searchText"></label>
+					<ul class="list-group checked-list-box">
+						<li class="list-group-item" ng-repeat="ingredient in ingredients | orderBy:'name' | filter:searchText |filter:{have:false}| limitTo:5">
+							<input type="checkbox" ng-change="update(ingredient)" ng-model="ingredient.have"> {{ingredient.name}}
+						</li>
+					</ul>
+
+
 				</div>
 				<div class="col-md-9">
 					<p>No cocktails yet</p>

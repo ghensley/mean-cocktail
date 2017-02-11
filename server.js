@@ -37,6 +37,14 @@ app.get("/api/ingredients",function(req, res){
 	});
 });
 
+app.get("/api/update_availability/:id/:status",function(req,res){
+
+	Ingredient.update({ _id: req.params.id }, { $set: { have: req.params.status }}, function(err){
+		if (err) return console.error(err);
+  		res.send("ok");
+	});
+});
+
 app.use(express.static('client'))
 
 app.listen(3000, function(){

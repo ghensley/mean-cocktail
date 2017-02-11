@@ -12,5 +12,15 @@ app.controller("cocktailController", ["$scope", "$http", function($scope, $http)
 	    	console.log(response);
 	  	});
 	}
+	$scope.update = function(ingredient){
+		$http({
+  			method: 'GET',
+  			url: '/api/update_availability/'+ingredient._id+'/'+ingredient.have
+		}).then(function successCallback(response) {
+	    	console.log(response)
+	  	}, function errorCallback(response) {
+	    	console.log(response);
+	  	});
+	}
 	$scope.getIngredients();
 }]);
