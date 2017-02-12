@@ -5,3 +5,11 @@
     color: rgb(255, 255, 255);
     background-color: rgb(66, 139, 202);
 }
+.ingredients {
+	list-style-type: none;
+	padding: 10px;
+	margin: 0;
+}
+.ingredients-item{
+
+}

@@ -46,13 +46,17 @@
 				<div class="col-md-9" ng-cloak>
 					<div class="row">
 						<div class="col-md-3" ng-repeat="cocktail in cocktails">
-							<h2>{{cocktail.name}}</h2>
-							<ul>
-
-								<li ng-repeat="ingredient in cocktail.ingredients">
+							<h3>{{cocktail.name}}</h3>
+							<div>
+								<small class="text-muted">{{cocktail.description}}</small>
+							</div>
+							<span class="divider"></span>
+							<ul class="ingredients">
+								<li class="ingredients-item" ng-repeat="ingredient in cocktail.ingredients">
 									{{ingredient.name}} - {{ingredient.amount}}
 								</li>
 							</ul>
+							<span class="text-muted">{{cocktail.preperation}}</span>
 						</div>
 					</div>
 				</div>
