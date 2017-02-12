@@ -63,6 +63,33 @@ app.get("/api/cocktails", function(req,res){
 	});
 })
 
+app.get("/api/ready_cocktails", function(req, res){
+	Ingredient.find({have:true}, function(err, ingredients){
+		var ingredient_names = [];
+		for (i in ingredients){
+			ingredient_names.push(ingredients[i].name)
+		}
+		output = []
+		if (err) return console.error(err);
+		Cocktail.find(function (err, cocktails){
+			for (var i = 0; i<cocktails.length; i++){
+				console.log(cocktails[i])
+				var add = true;
+				for (j = 0; j < cocktails[i].ingredients.length; j++){
+					if (!(ingredient_names.indexOf(cocktails[i].ingredients[j].name) >= 0)){
+						add = false; 
+					}
+				}
+				if (add){
+					output.push(cocktails[i]);
+				}
+			}
+			console.log(output)
+			res.send(output)
+		});
+	});
+});
+
 app.get("/api/ingredients",function(req, res){
 	Ingredient.find(function (err, ingredients) {
   		if (err) return console.error(err);

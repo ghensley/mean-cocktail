@@ -2,12 +2,24 @@ var app = angular.module("cocktail",[]);
 
 app.controller("cocktailController", ["$scope", "$http", function($scope, $http){
 	$scope.ingredients = [];
+	$scope.cocktails = [];
 	$scope.getIngredients = function(){
 		$http({
   			method: 'GET',
   			url: '/api/ingredients'
 		}).then(function successCallback(response) {
 	    	$scope.ingredients = response.data;
+	    	$scope.getCocktails();
+	  	}, function errorCallback(response) {
+	    	console.log(response);
+	  	});
+	}
+	$scope.getCocktails = function(){
+		$http({
+  			method: 'GET',
+  			url: '/api/ready_cocktails'
+		}).then(function successCallback(response) {
+	    	$scope.cocktails = response.data;
 	  	}, function errorCallback(response) {
 	    	console.log(response);
 	  	});
@@ -17,11 +29,13 @@ app.controller("cocktailController", ["$scope", "$http", function($scope, $http)
   			method: 'GET',
   			url: '/api/update_availability/'+ingredient._id+'/'+ingredient.have
 		}).then(function successCallback(response) {
-	    	console.log(response)
+	    	$scope.getCocktails();
 	  	}, function errorCallback(response) {
 	    	console.log(response);
 	  	});
+	  	$scope.searchText = "";
 	}
+	$scope.getIngredients();
 }]);
 
 app.controller("recipeController", ["$scope", "$http", function($scope, $http){

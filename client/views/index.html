@@ -44,8 +44,16 @@
 
 				</div>
 				<div class="col-md-9">
-					<p>No cocktails yet</p>
-					
+					<div class="row">
+						<div class="col-md-3" ng-repeat="cocktail in cocktails">
+							<h2>{{cocktail.name}}</h2>
+								<ul>
+									<li ng-repeat="ingredient in cocktail.ingredients">
+										{{ingredient.name}} - {{ingredient.amount}}
+									</li>
+								</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
