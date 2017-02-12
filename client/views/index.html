@@ -29,7 +29,7 @@
 					<h3>Ingredients you have:</h3>
 
 					<ul class="list-group">
-						<li class="list-group-item" ng-repeat="ingredient in ingredients|filter:{have:true}|orderBy:'name'">
+						<li class="list-group-item" ng-repeat="ingredient in ingredients|filter:{have:true} | orderBy:'name'">
 							<input type="checkbox" ng-change="update(ingredient)" ng-model="ingredient.have"> {{ingredient.name}}
 						</li>
 					</ul>
@@ -45,14 +45,14 @@
 				</div>
 				<div class="col-md-9" ng-cloak>
 					<div class="row">
-						<div class="col-md-3" ng-repeat="cocktail in cocktails">
+						<div class="col-md-3" ng-repeat="cocktail in cocktails | orderBy:'name'">
 							<h3>{{cocktail.name}}</h3>
 							<div>
 								<small class="text-muted">{{cocktail.description}}</small>
 							</div>
 							<span class="divider"></span>
 							<ul class="ingredients">
-								<li class="ingredients-item" ng-repeat="ingredient in cocktail.ingredients">
+								<li class="ingredients-item" ng-repeat="ingredient in cocktail.ingredients | orderBy:'name'">
 									{{ingredient.name}} - {{ingredient.amount}}
 								</li>
 							</ul>
