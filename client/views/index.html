@@ -43,15 +43,16 @@
 
 
 				</div>
-				<div class="col-md-9">
+				<div class="col-md-9" ng-cloak>
 					<div class="row">
 						<div class="col-md-3" ng-repeat="cocktail in cocktails">
 							<h2>{{cocktail.name}}</h2>
-								<ul>
-									<li ng-repeat="ingredient in cocktail.ingredients">
-										{{ingredient.name}} - {{ingredient.amount}}
-									</li>
-								</ul>
+							<ul>
+
+								<li ng-repeat="ingredient in cocktail.ingredients">
+									{{ingredient.name}} - {{ingredient.amount}}
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>

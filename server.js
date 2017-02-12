@@ -73,7 +73,6 @@ app.get("/api/ready_cocktails", function(req, res){
 		if (err) return console.error(err);
 		Cocktail.find(function (err, cocktails){
 			for (var i = 0; i<cocktails.length; i++){
-				console.log(cocktails[i])
 				var add = true;
 				for (j = 0; j < cocktails[i].ingredients.length; j++){
 					if (!(ingredient_names.indexOf(cocktails[i].ingredients[j].name) >= 0)){
@@ -84,7 +83,6 @@ app.get("/api/ready_cocktails", function(req, res){
 					output.push(cocktails[i]);
 				}
 			}
-			console.log(output)
 			res.send(output)
 		});
 	});
