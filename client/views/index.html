@@ -1,10 +1,9 @@
 <html ng-app="cocktail">
 	<head>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
-		<script src="/js/controllers/cocktail-controller.js"></script>
 		<title>Cocktail</title>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
 		<!-- Latest compiled and minified CSS -->
@@ -13,23 +12,27 @@
 		<!-- Optional theme -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 		<link rel="stylesheet" href="/css/superhero.css">
 		<link rel="stylesheet" href="/css/cocktail.css">
 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
+		<script src="/js/controllers/cocktail-controller.js"></script>
 
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<div class="container" ng-controller="cocktailController">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-sm-12 col-md-12">
 					<h1 class="animated fadeInDown"> Cocktail Inventory </h1>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-3" ng-cloak>
+				<div class="col-sm-12 col-md-3" ng-cloak>
 
 					<h3 class="animated fadeInLeft">Ingredients you have:</h3>
 
@@ -50,20 +53,22 @@
 
 
 				</div>
-				<div class="col-md-9" ng-cloak>
+				<div class="col-md-9 col-sm-12" ng-cloak>
 					<div class="row">
-						<div class="col-md-3 drink animated fadeInRight" ng-repeat="cocktail in cocktails | orderBy:'name'">
-							<h3>{{cocktail.name}}</h3>
-							<div>
-								<small class="text-muted">{{cocktail.description}}</small>
+						<div ng-repeat="cocktail in cocktails | orderBy:'name'">
+							<div class="clearfix" ng-if="$index % 4 == 0"></div>
+							<div class="col-md-3 col-sm-12 drink animated fadeInRight">
+								<h3>{{cocktail.name}}</h3>
+								<div>
+									<small class="text-muted">{{cocktail.description}}</small>
+								</div>
+								<ul class="ingredients">
+									<li class="ingredients-item" ng-repeat="ingredient in cocktail.ingredients | orderBy:'popularity':true">
+										{{ingredient.name}} - {{ingredient.amount}}
+									</li>
+								</ul>
+								<span class="text-muted"><i class="fa fa-glass" aria-hidden="true"></i> {{cocktail.preperation}}</span>
 							</div>
-							<span class="divider"></span>
-							<ul class="ingredients">
-								<li class="ingredients-item" ng-repeat="ingredient in cocktail.ingredients | orderBy:'popularity':true">
-									{{ingredient.name}} - {{ingredient.amount}}
-								</li>
-							</ul>
-							<span class="text-muted"><i class="fa fa-glass" aria-hidden="true"></i> {{cocktail.preperation}}</span>
 						</div>
 					</div>
 				</div>
