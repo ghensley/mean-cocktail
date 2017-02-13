@@ -23,23 +23,23 @@
 		<div class="container" ng-controller="cocktailController">
 			<div class="row">
 				<div class="col-md-12">
-					<h1> Cocktail Inventory </h1>
+					<h1 class="animated fadeInDown"> Cocktail Inventory </h1>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-3" ng-cloak>
 
-					<h3>Ingredients you have:</h3>
+					<h3 class="animated fadeInLeft">Ingredients you have:</h3>
 
 					<ul class="list-group">
-						<li class="list-group-item animated bounceInUp" ng-repeat="ingredient in ingredients|filter:{have:true} | orderBy:'name'">
+						<li class="list-group-item animated fadeInLeft" ng-repeat="ingredient in ingredients|filter:{have:true} | orderBy:'name'">
 							<input type="checkbox" ng-change="update(ingredient)" ng-model="ingredient.have"> {{ingredient.name}}
 						</li>
 					</ul>
 
-					<label>Search: <input ng-model="searchText"></label>
+					<label class="animated fadeInLeft">Search: <input ng-model="searchText"></label>
 					<ul class="list-group checked-list-box">
-						<li class="list-group-item" ng-repeat="ingredient in ingredients | orderBy:'name' | filter:searchText |filter:{have:false}| limitTo:5">
+						<li class="list-group-item animated fadeInLeft" ng-repeat="ingredient in ingredients | orderBy:'name' | filter:searchText |filter:{have:false}| limitTo:5">
 							<input type="checkbox" ng-change="update(ingredient)" ng-model="ingredient.have"> {{ingredient.name}}
 						</li>
 					</ul>
@@ -48,7 +48,7 @@
 				</div>
 				<div class="col-md-9" ng-cloak>
 					<div class="row">
-						<div class="col-md-3 drink animated bounceInLeft" ng-repeat="cocktail in cocktails | orderBy:'name'">
+						<div class="col-md-3 drink animated fadeInRight" ng-repeat="cocktail in cocktails | orderBy:'name'">
 							<h3>{{cocktail.name}}</h3>
 							<div>
 								<small class="text-muted">{{cocktail.description}}</small>
