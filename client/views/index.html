@@ -15,6 +15,7 @@
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="/css/superhero.css">
 
 		<link rel="stylesheet" href="/css/cocktail.css">
 	</head>
@@ -47,7 +48,7 @@
 				</div>
 				<div class="col-md-9" ng-cloak>
 					<div class="row">
-						<div class="col-md-3 animated bounceInLeft" ng-repeat="cocktail in cocktails | orderBy:'name'">
+						<div class="col-md-3 drink animated bounceInLeft" ng-repeat="cocktail in cocktails | orderBy:'name'">
 							<h3>{{cocktail.name}}</h3>
 							<div>
 								<small class="text-muted">{{cocktail.description}}</small>
