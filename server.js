@@ -14,7 +14,8 @@ db.once('open', function() {
 
 var ingredientSchema = mongoose.Schema({
 	name: String,
-	have: Boolean
+	have: Boolean,
+	populatity: Number
 });
 
 var cocktailSchema = mongoose.Schema({

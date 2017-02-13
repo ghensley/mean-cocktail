@@ -15,9 +15,11 @@
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 		<link rel="stylesheet" href="/css/superhero.css">
-
 		<link rel="stylesheet" href="/css/cocktail.css">
+
+
 	</head>
 	<body>
 		<div class="container" ng-controller="cocktailController">
@@ -33,14 +35,16 @@
 
 					<ul class="list-group">
 						<li class="list-group-item animated fadeInLeft" ng-repeat="ingredient in ingredients|filter:{have:true} | orderBy:'name'">
-							<input type="checkbox" ng-change="update(ingredient)" ng-model="ingredient.have"> {{ingredient.name}}
+							<input type="checkbox" ng-change="update(ingredient)" ng-model="ingredient.have"> 
+							<label>{{ingredient.name}}</label>
 						</li>
 					</ul>
 
 					<label class="animated fadeInLeft">Search: <input ng-model="searchText"></label>
 					<ul class="list-group checked-list-box">
-						<li class="list-group-item animated fadeInLeft" ng-repeat="ingredient in ingredients | orderBy:'name' | filter:searchText |filter:{have:false}| limitTo:5">
-							<input type="checkbox" ng-change="update(ingredient)" ng-model="ingredient.have"> {{ingredient.name}}
+						<li class="list-group-item animated fadeInLeft" ng-repeat="ingredient in ingredients | orderBy:'popularity':true | filter:searchText |filter:{have:false}| limitTo:5">
+							<input type="checkbox" ng-change="update(ingredient)" ng-model="ingredient.have">
+							<label>{{ingredient.name}}</label>
 						</li>
 					</ul>
 
@@ -55,11 +59,11 @@
 							</div>
 							<span class="divider"></span>
 							<ul class="ingredients">
-								<li class="ingredients-item" ng-repeat="ingredient in cocktail.ingredients | orderBy:'name'">
+								<li class="ingredients-item" ng-repeat="ingredient in cocktail.ingredients | orderBy:'popularity':true">
 									{{ingredient.name}} - {{ingredient.amount}}
 								</li>
 							</ul>
-							<span class="text-muted">{{cocktail.preperation}}</span>
+							<span class="text-muted"><i class="fa fa-glass" aria-hidden="true"></i> {{cocktail.preperation}}</span>
 						</div>
 					</div>
 				</div>
