@@ -54,10 +54,14 @@
 
 				</div>
 				<div class="col-md-9" ng-cloak>
+					<div class="col-md-3 col-md-offset-4" ng-hide="cocktails.length">
+						<br/>
+						<lead> No Cocktails yet! </lead>
+					</div>
 					<div class="row">
 						<div ng-repeat="cocktail in cocktails | orderBy:'name'">
 							<div class="clearfix" ng-if="$index % 4 == 0"></div>
-							<div class="col-md-3 col-sm-12 drink animated fadeInRight">
+							<div class="col-md-3 col-sm-12 drink">
 								<h3>{{cocktail.name}}</h3>
 								<div>
 									<small class="text-muted">{{cocktail.description}}</small>
