@@ -29,13 +29,13 @@
 		<div class="container" ng-controller="cocktailController">
 			<div class="row">
 				<div class="col-md-12">
-					<h1 class="animated fadeInDown"> Cocktail Inventory </h1>
+					<h1 class="animated fadeInDown"> <b>Cocktail Inventory</b> </h1>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-3" ng-cloak>
+				<div class="col-md-2" ng-cloak>
 
-					<h3 class="animated fadeInLeft">Ingredients you have:</h3>
+					<h5 class="animated fadeInLeft">Ingredients you have:</h5>
 
 					<ul class="list-group">
 						<li class="list-group-item animated fadeInLeft" ng-repeat="ingredient in ingredients|filter:{have:true} | orderBy:'name'">
@@ -54,7 +54,7 @@
 
 
 				</div>
-				<div class="col-md-9" ng-cloak>
+				<div class="col-md-10" ng-cloak>
 					<div class="col-md-3 col-md-offset-4" ng-hide="cocktails.length">
 						<br/>
 						<lead> No Cocktails yet! </lead>
